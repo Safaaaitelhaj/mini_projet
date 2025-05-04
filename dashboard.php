@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-// Ajouter un client
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_client'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -15,14 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_client'])) {
     mysqli_query($conn, $sql);
 }
 
-// Supprimer un client
 if (isset($_GET['delete'])) {
     $client_id = $_GET['delete'];
     $sql = "DELETE FROM clients WHERE id = $client_id";
     mysqli_query($conn, $sql);
 }
-
-// Modifier un client
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_client'])) {
     $client_id = $_POST['client_id'];
     $name = $_POST['name'];
@@ -51,7 +47,6 @@ $result = mysqli_query($conn, "SELECT * FROM clients");
         <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
             <h2 class="text-2xl mb-4">Liste des clients</h2>
 
-            <!-- Formulaire d'ajout de client -->
             <form method="post" class="mb-6">
                 <h3 class="text-lg mb-2">Ajouter un client</h3>
                 <div class="mb-4">
@@ -66,7 +61,6 @@ $result = mysqli_query($conn, "SELECT * FROM clients");
                 <button type="submit" name="add_client" class="bg-green-500 text-white py-2 px-4 rounded">Ajouter Client</button>
             </form>
 
-            <!-- Tableau des clients -->
             <table class="w-full border">
                 <thead>
                     <tr>
