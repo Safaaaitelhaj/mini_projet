@@ -6,16 +6,13 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-// Vérification de l'ID du client dans l'URL
 if (isset($_GET['id'])) {
     $client_id = $_GET['id'];
 
-    // Récupérer les informations du client
     $result = mysqli_query($conn, "SELECT * FROM clients WHERE id = $client_id");
     $client = mysqli_fetch_assoc($result);
 }
 
-// Mettre à jour le client
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_client'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
